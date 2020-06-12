@@ -4,11 +4,17 @@ console.log("hi");
 var template = <p>Cool!</p>;
 
 //challenge
+
+var user = {
+  name: "Annisa Tahira",
+  nickName: "Anta",
+  location: "Indonesia"
+};
 var templateTwo = (
   <div>
-    <h1>Annisa Tahira</h1>
-    <p>Nickname : Anta</p>
-    <p>Location : Indonesia</p>
+    <h1>{user.name}</h1>
+    <p>Nickname : {user.nickName.toLocaleUpperCase()}</p>
+    <p>Location : {user.location}</p>
   </div>
 );
 var appRoot = document.getElementById("app");
