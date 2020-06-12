@@ -22,4 +22,4 @@ var appRoot = document.getElementById("app");
 ReactDOM.render(templateTwo, appRoot);
 
 // use to preset
-// babel src/app.js --out-file=public/scripts/app.js --presets=env, react
+// yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react
