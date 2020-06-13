@@ -10,6 +10,7 @@ var user = {
   nickName: "Anta"
 };
 
+//use if conditional
 function getLocation(location) {
   if (location) {
     return <p>Location: {location}</p>;
@@ -18,7 +19,9 @@ function getLocation(location) {
 var templateTwo = (
   <div>
     <h1>{user.name}</h1>
-    <p>Nickname : {user.nickName.toLocaleUpperCase()}</p>
+    {user.nickName && user.nickName == "Anta" && (
+      <p>Nickname : {user.nickName}</p>
+    )}
     {getLocation(user.location)}
   </div>
 );
