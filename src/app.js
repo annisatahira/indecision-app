@@ -7,14 +7,19 @@ var template = <p>Cool!</p>;
 
 var user = {
   name: "Annisa Tahira",
-  nickName: "Anta",
-  location: "Indonesia"
+  nickName: "Anta"
 };
+
+function getLocation(location) {
+  if (location) {
+    return <p>Location: {location}</p>;
+  }
+}
 var templateTwo = (
   <div>
     <h1>{user.name}</h1>
     <p>Nickname : {user.nickName.toLocaleUpperCase()}</p>
-    <p>Location : {user.location}</p>
+    {getLocation(user.location)}
   </div>
 );
 var appRoot = document.getElementById("app");
