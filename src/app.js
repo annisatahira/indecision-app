@@ -1,7 +1,7 @@
 console.log("hi");
 
 // JavaScript XML
-var app = {
+const app = {
   title: "Indecision App",
   subtitle: "Let Computer Help You Decide it",
   option: ["one", "two"]
@@ -14,7 +14,7 @@ var app = {
 //     return <p>No Option</p>;
 //   }
 // }
-var template = (
+const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
@@ -24,7 +24,7 @@ var template = (
 
 //challenge
 
-var user = {
+const user = {
   name: "Annisa Tahira",
   nickName: "Anta"
 };
@@ -35,7 +35,7 @@ function getLocation(location) {
     return <p>Location: {location}</p>;
   }
 }
-var templateTwo = (
+const templateTwo = (
   <div>
     <h1>{user.name ? user.name : "Anonymous"}</h1>
     {user.nickName && user.nickName == "Anta" && (
@@ -44,7 +44,7 @@ var templateTwo = (
     {getLocation(user.location)}
   </div>
 );
-var appRoot = document.getElementById("app");
+const appRoot = document.getElementById("app");
 
 ReactDOM.render(template, appRoot);
 
