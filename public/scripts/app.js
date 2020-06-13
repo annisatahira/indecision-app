@@ -15,19 +15,47 @@ var app = {
 // }
 
 var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), app.subtitle && /*#__PURE__*/React.createElement("p", null, "Subtitle : ", app.subtitle), /*#__PURE__*/React.createElement("p", null, app.option.length > 0 ? "Here is a Option" : "No Option")); //challenge
+// const user = {
+//   name: "Annisa Tahira",
+//   nickName: "Anta"
+// };
+// //use if conditional
+// function getLocation(location) {
+//   if (location) {
+//     return <p>Location: {location}</p>;
+//   }
+// }
+// const templateTwo = (
+//   <div>
+//     <h1>{user.name ? user.name : "Anonymous"}</h1>
+//     {user.nickName && user.nickName == "Anta" && (
+//       <p>Nickname : {user.nickName}</p>
+//     )}
+//     {getLocation(user.location)}
+//   </div>
+// );
 
-var user = {
-  name: "Annisa Tahira",
-  nickName: "Anta"
-}; //use if conditional
+var count = 0;
 
-function getLocation(location) {
-  if (location) {
-    return /*#__PURE__*/React.createElement("p", null, "Location: ", location);
-  }
-}
+var addOne = function addOne() {
+  console.log("add one");
+};
 
-var templateTwo = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, user.name ? user.name : "Anonymous"), user.nickName && user.nickName == "Anta" && /*#__PURE__*/React.createElement("p", null, "Nickname : ", user.nickName), getLocation(user.location));
+var addMinus = function addMinus() {
+  console.log("Minus One");
+};
+
+var reset = function reset() {
+  console.log("reset");
+};
+
+var templateTwo = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
+  onClick: addOne
+}, "+1"), /*#__PURE__*/React.createElement("button", {
+  onClick: addMinus
+}, "-1"), /*#__PURE__*/React.createElement("button", {
+  onClick: reset
+}, "Reset"));
 var appRoot = document.getElementById("app");
-ReactDOM.render(template, appRoot); // use to preset
+ReactDOM.render(templateTwo, appRoot); // use to preset
 // yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react

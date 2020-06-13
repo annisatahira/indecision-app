@@ -24,29 +24,47 @@ const template = (
 
 //challenge
 
-const user = {
-  name: "Annisa Tahira",
-  nickName: "Anta"
-};
+// const user = {
+//   name: "Annisa Tahira",
+//   nickName: "Anta"
+// };
 
-//use if conditional
-function getLocation(location) {
-  if (location) {
-    return <p>Location: {location}</p>;
-  }
-}
+// //use if conditional
+// function getLocation(location) {
+//   if (location) {
+//     return <p>Location: {location}</p>;
+//   }
+// }
+// const templateTwo = (
+//   <div>
+//     <h1>{user.name ? user.name : "Anonymous"}</h1>
+//     {user.nickName && user.nickName == "Anta" && (
+//       <p>Nickname : {user.nickName}</p>
+//     )}
+//     {getLocation(user.location)}
+//   </div>
+// );
+let count = 0;
+const addOne = () => {
+  console.log("add one");
+};
+const addMinus = () => {
+  console.log("Minus One");
+};
+const reset = () => {
+  console.log("reset");
+};
 const templateTwo = (
   <div>
-    <h1>{user.name ? user.name : "Anonymous"}</h1>
-    {user.nickName && user.nickName == "Anta" && (
-      <p>Nickname : {user.nickName}</p>
-    )}
-    {getLocation(user.location)}
+    <h1>Count: {count}</h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={addMinus}>-1</button>
+    <button onClick={reset}>Reset</button>
   </div>
 );
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
 
 // use to preset
 // yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react
