@@ -24,10 +24,18 @@ var removeOption = function removeOption() {
   renderFormSubmit();
 };
 
+var decideOption = function decideOption() {
+  var randomOption = Math.floor(Math.random() * app.options.length);
+  alert(app.options[randomOption]);
+};
+
 var appRoot = document.getElementById("app");
 
 var renderFormSubmit = function renderFormSubmit() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), app.subtitle && /*#__PURE__*/React.createElement("p", null, app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? "Here is a Option" : "No Option"), /*#__PURE__*/React.createElement("p", null, app.options.length), /*#__PURE__*/React.createElement("button", {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), app.subtitle && /*#__PURE__*/React.createElement("p", null, app.subtitle), /*#__PURE__*/React.createElement("p", null, app.options.length > 0 ? "Here is a Option" : "No Option"), /*#__PURE__*/React.createElement("button", {
+    disabled: app.options.length === 0,
+    onClick: decideOption
+  }, "Random Option"), /*#__PURE__*/React.createElement("button", {
     onClick: removeOption
   }, "Remove All Option"), /*#__PURE__*/React.createElement("ol", null, app.options.map(function (option) {
     return /*#__PURE__*/React.createElement("li", {

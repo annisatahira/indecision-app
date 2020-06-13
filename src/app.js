@@ -23,6 +23,11 @@ const removeOption = () => {
   renderFormSubmit();
 };
 
+const decideOption = () => {
+  const randomOption = Math.floor(Math.random() * app.options.length);
+  alert(app.options[randomOption]);
+};
+
 const appRoot = document.getElementById("app");
 
 const renderFormSubmit = () => {
@@ -31,7 +36,9 @@ const renderFormSubmit = () => {
       <h1>{app.title}</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length > 0 ? "Here is a Option" : "No Option"}</p>
-      <p>{app.options.length}</p>
+      <button disabled={app.options.length === 0} onClick={decideOption}>
+        Random Option
+      </button>
       <button onClick={removeOption}>Remove All Option</button>
       <ol>
         {/* map options */}
