@@ -4,76 +4,50 @@ console.log("hi");
 const app = {
   title: "Indecision App",
   subtitle: "Let Computer Help You Decide it",
-  option: ["one", "two"]
+  options: []
 };
 
-// function getOption(option) {
-//   if (option.length > 0) {
-//     return <p>Here Your Option</p>;
-//   } else {
-//     return <p>No Option</p>;
-//   }
-// }
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
-    <p>{app.option.length > 0 ? "Here is a Option" : "No Option"}</p>
-  </div>
-);
+const onFormSubmit = e => {
+  e.preventDefault();
 
-//challenge
-
-// const user = {
-//   name: "Annisa Tahira",
-//   nickName: "Anta"
-// };
-
-// //use if conditional
-// function getLocation(location) {
-//   if (location) {
-//     return <p>Location: {location}</p>;
-//   }
-// }
-// const templateTwo = (
-//   <div>
-//     <h1>{user.name ? user.name : "Anonymous"}</h1>
-//     {user.nickName && user.nickName == "Anta" && (
-//       <p>Nickname : {user.nickName}</p>
-//     )}
-//     {getLocation(user.location)}
-//   </div>
-// );
-let count = 0;
-const addOne = () => {
-  count++;
-  //rerender
-  renderCounterApp();
+  const option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = "";
+    renderFormSubmit();
+  }
 };
-const minusOne = () => {
-  count--;
-  renderCounterApp();
-};
-const reset = () => {
-  count = 0;
-  renderCounterApp();
+
+const removeOption = () => {
+  app.options = [];
+  renderFormSubmit();
 };
 
 const appRoot = document.getElementById("app");
 
-const renderCounterApp = () => {
-  const templateTwo = (
+const renderFormSubmit = () => {
+  const template = (
     <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>Reset</button>
+      <h1>{app.title}</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <p>{app.options.length > 0 ? "Here is a Option" : "No Option"}</p>
+      <p>{app.options.length}</p>
+      <button onClick={removeOption}>Remove All Option</button>
+      <ol>
+        <li>Item One</li>
+        <li>Item Two</li>
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
     </div>
   );
 
-  ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderFormSubmit();
+
 // use to preset
 // yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react
