@@ -46,25 +46,34 @@ const template = (
 // );
 let count = 0;
 const addOne = () => {
-  console.log("add one");
+  count++;
+  //rerender
+  renderCounterApp();
 };
-const addMinus = () => {
-  console.log("Minus One");
+const minusOne = () => {
+  count--;
+  renderCounterApp();
 };
 const reset = () => {
-  console.log("reset");
+  count = 0;
+  renderCounterApp();
 };
-const templateTwo = (
-  <div>
-    <h1>Count: {count}</h1>
-    <button onClick={addOne}>+1</button>
-    <button onClick={addMinus}>-1</button>
-    <button onClick={reset}>Reset</button>
-  </div>
-);
+
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(templateTwo, appRoot);
+const renderCounterApp = () => {
+  const templateTwo = (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
 
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
 // use to preset
 // yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react

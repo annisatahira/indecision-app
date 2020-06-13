@@ -38,24 +38,33 @@ var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.
 var count = 0;
 
 var addOne = function addOne() {
-  console.log("add one");
+  count++; //rerender
+
+  renderCounterApp();
 };
 
-var addMinus = function addMinus() {
-  console.log("Minus One");
+var minusOne = function minusOne() {
+  count--;
+  renderCounterApp();
 };
 
 var reset = function reset() {
-  console.log("reset");
+  count = 0;
+  renderCounterApp();
 };
 
-var templateTwo = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
-  onClick: addOne
-}, "+1"), /*#__PURE__*/React.createElement("button", {
-  onClick: addMinus
-}, "-1"), /*#__PURE__*/React.createElement("button", {
-  onClick: reset
-}, "Reset"));
 var appRoot = document.getElementById("app");
-ReactDOM.render(templateTwo, appRoot); // use to preset
+
+var renderCounterApp = function renderCounterApp() {
+  var templateTwo = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
+    onClick: addOne
+  }, "+1"), /*#__PURE__*/React.createElement("button", {
+    onClick: minusOne
+  }, "-1"), /*#__PURE__*/React.createElement("button", {
+    onClick: reset
+  }, "Reset"));
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp(); // use to preset
 // yarn babel src/app.js --out-file=public/scripts/app.js --presets=@babel/preset-env,@babel/preset-react
