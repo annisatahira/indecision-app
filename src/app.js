@@ -19,7 +19,9 @@ function getLocation(location) {
 var templateTwo = (
   <div>
     <h1>{user.name ? user.name : "Anonymous"}</h1>
-
+    {user.nickName && user.nickName == "Anta" && (
+      <p>Nickname : {user.nickName}</p>
+    )}
     {getLocation(user.location)}
   </div>
 );
