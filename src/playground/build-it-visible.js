@@ -1,33 +1,66 @@
-let visibility = false;
+class ToggleVisibility extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleVisibility = this.handleVisibility.bind(this);
+    this.state = {
+      visibility: false
+    };
+  }
+  handleVisibility() {
+    this.setState(prevState => {
+      return {
+        visibility: !prevState.visibility
+      };
+    });
+  }
+  render() {
+    return (
+      <div>
+        <h1>Visibility Toggle</h1>
+        <button onClick={this.handleVisibility}>
+          {this.state.visibility ? "Hide Details" : "Show Details"}
+        </button>
+        {this.state.visibility && (
+          <div>
+            <p>Here is Detail Text</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
 
-const app = {
-  title: "Visible Toggle",
-  details: "This is details Text"
-};
+ReactDOM.render(<ToggleVisibility />, document.getElementById("app"));
+// let visibility = false;
 
-const toggleVisibility = () => {
-  visibility = !visibility;
-  render();
-};
+// const app = {
+//   title: "Visible Toggle",
+//   details: "This is details Text"
+// };
 
-const appRoot = document.getElementById("app");
+// const toggleVisibility = () => {
+//   visibility = !visibility;
+//   render();
+// };
 
-const render = () => {
-  const template = (
-    <div>
-      <h1>{app.title}</h1>
-      <button onClick={toggleVisibility}>
-        {visibility ? "Hide Details" : "Show Details"}
-      </button>
-      {visibility && (
-        <div>
-          <p>{app.details}</p>
-        </div>
-      )}
-    </div>
-  );
+// const appRoot = document.getElementById("app");
 
-  ReactDOM.render(template, appRoot);
-};
+// const render = () => {
+//   const template = (
+//     <div>
+//       <h1>{app.title}</h1>
+//       <button onClick={toggleVisibility}>
+//         {visibility ? "Hide Details" : "Show Details"}
+//       </button>
+//       {visibility && (
+//         <div>
+//           <p>{app.details}</p>
+//         </div>
+//       )}
+//     </div>
+//   );
 
-render();
+//   ReactDOM.render(template, appRoot);
+// };
+
+// render();
