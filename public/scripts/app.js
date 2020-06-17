@@ -101,7 +101,7 @@ IndecisionApp.defaultProps = {
 };
 
 var Header = function Header(props) {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement("h2", null, props.subtitle));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), props.subtitle && /*#__PURE__*/React.createElement("h2", null, props.subtitle));
 };
 
 Header.defaultProps = {
