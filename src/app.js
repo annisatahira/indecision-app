@@ -3,8 +3,9 @@ class IndecisionApp extends React.Component {
     super(props);
     this.handleRemoveAll = this.handleRemoveAll.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: ["one", "two", "three"]
+      options: []
     };
   }
 
@@ -21,6 +22,20 @@ class IndecisionApp extends React.Component {
     const option = this.state.options[randomOption];
     alert(option);
   }
+
+  handleAddOption(option) {
+    //handle error
+    if (!option) {
+      return "Please enter a new valid data";
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "This data already exist";
+    }
+    this.setState(prevState => {
+      return {
+        options: prevState.options.concat(option)
+      };
+    });
+  }
   render() {
     const title = "Indecision";
     const subtitle = "Let Computer Decide it For You";
@@ -36,7 +51,7 @@ class IndecisionApp extends React.Component {
           hasOptions={this.state.options.length > 0}
           handleRemoveAll={this.handleRemoveAll}
         />
-        <AddOption />
+        <AddOption handleAddOption={this.handleAddOption} />
       </div>
     );
   }
@@ -93,18 +108,30 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
-  handleSubmit(e) {
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      error: undefined
+    };
+  }
+  handleAddOption(e) {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim();
-    if (option) {
-      alert(option);
-    }
+    const error = this.props.handleAddOption(option);
+
+    this.setState(() => {
+      return {
+        error
+      };
+    });
   }
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleAddOption}>
           <input type="text" name="option"></input>
           <button>add option</button>
         </form>
