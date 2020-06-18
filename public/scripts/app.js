@@ -36,6 +36,7 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveAll = _this.handleRemoveAll.bind(_assertThisInitialized(_this));
     _this.handlePick = _this.handlePick.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
+    _this.handleDeleteOption = _this.handleDeleteOption.bind(_assertThisInitialized(_this));
     _this.state = {
       options: props.options
     };
@@ -75,6 +76,17 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleDeleteOption",
+    value: function handleDeleteOption(optionToRemove) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove != option;
+          })
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var subtitle = "Let Computer Decide it For You";
@@ -86,7 +98,8 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/React.createElement(Options, {
         options: this.state.options,
         hasOptions: this.state.options.length > 0,
-        handleRemoveAll: this.handleRemoveAll
+        handleRemoveAll: this.handleRemoveAll,
+        handleDeleteOption: this.handleDeleteOption
       }), /*#__PURE__*/React.createElement(AddOption, {
         handleAddOption: this.handleAddOption
       }));
@@ -122,13 +135,18 @@ var Options = function Options(props) {
   }, "Remove All Option"), props.options.map(function (option) {
     return /*#__PURE__*/React.createElement(Option, {
       key: option,
-      textOption: option
+      textOption: option,
+      handleDeleteOption: props.handleDeleteOption
     });
   }));
 };
 
 var Option = function Option(props) {
-  return /*#__PURE__*/React.createElement("div", null, "Option : ", props.textOption);
+  return /*#__PURE__*/React.createElement("div", null, "Option : ", props.textOption, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick(e) {
+      props.handleDeleteOption(props.textOption);
+    }
+  }, "Remove"));
 };
 
 var AddOption = /*#__PURE__*/function (_React$Component2) {
