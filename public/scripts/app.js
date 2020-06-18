@@ -44,6 +44,37 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json); //menampilkan options
+
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (error) {}
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+
+      console.log("update");
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("unmount");
+    }
+  }, {
     key: "handleRemoveAll",
     value: function handleRemoveAll() {
       this.setState(function () {
@@ -132,7 +163,7 @@ var Options = function Options(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: props.handleRemoveAll,
     disabled: !props.hasOptions
-  }, "Remove All Option"), props.options.map(function (option) {
+  }, "Remove All Option"), props.options.length === 0 && /*#__PURE__*/React.createElement("p", null, "Please Add some option"), props.options.map(function (option) {
     return /*#__PURE__*/React.createElement(Option, {
       key: option,
       textOption: option,
@@ -178,6 +209,10 @@ var AddOption = /*#__PURE__*/function (_React$Component2) {
           error: error
         };
       });
+
+      if (!error) {
+        e.target.elements.option.value = "";
+      }
     }
   }, {
     key: "render",
