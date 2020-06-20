@@ -5,16 +5,36 @@ import Action from "./Action.jsx";
 import Header from "./Header.jsx";
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    this.state = {
-      options: props.options
-    };
-  }
+  state = {
+    options: []
+  };
+
+  handleRemoveAll = () => {
+    this.setState(() => ({ options: [] }));
+  };
+
+  handlePick = () => {
+    const randomOption = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomOption];
+    alert(option);
+  };
+
+  handleAddOption = option => {
+    //handle error
+    if (!option) {
+      return "Please enter a new valid data";
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "This data already exist";
+    }
+    this.setState(prevState => ({ options: prevState.options.concat(option) }));
+  };
+
+  handleDeleteOption = optionToRemove => {
+    this.setState(prevState => ({
+      options: prevState.options.filter(option => optionToRemove != option)
+    }));
+  };
+
   componentDidMount() {
     try {
       const json = localStorage.getItem("options");
@@ -37,30 +57,7 @@ class IndecisionApp extends React.Component {
   componentWillUnmount() {
     console.log("unmount");
   }
-  handleRemoveAll() {
-    this.setState(() => ({ options: [] }));
-  }
 
-  handlePick() {
-    const randomOption = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomOption];
-    alert(option);
-  }
-
-  handleAddOption(option) {
-    //handle error
-    if (!option) {
-      return "Please enter a new valid data";
-    } else if (this.state.options.indexOf(option) > -1) {
-      return "This data already exist";
-    }
-    this.setState(prevState => ({ options: prevState.options.concat(option) }));
-  }
-  handleDeleteOption(optionToRemove) {
-    this.setState(prevState => ({
-      options: prevState.options.filter(option => optionToRemove != option)
-    }));
-  }
   render() {
     const subtitle = "Let Computer Decide it For You";
     return (
@@ -81,9 +78,5 @@ class IndecisionApp extends React.Component {
     );
   }
 }
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 export default IndecisionApp;
