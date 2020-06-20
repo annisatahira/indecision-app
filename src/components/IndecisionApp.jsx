@@ -32,7 +32,6 @@ class IndecisionApp extends React.Component {
       const json = JSON.stringify(this.state.options);
       localStorage.setItem("options", json);
     }
-    console.log("update");
   }
 
   componentWillUnmount() {
