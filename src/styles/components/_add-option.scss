@@ -4,3 +4,18 @@
   margin: $s-size 0 0 0;
   padding: 0 $s-size;
 }
+
+.add-option {
+  display: flex;
+  padding: $s-size;
+}
+
+.add-option__input {
+  flex-grow: 1;
+  background: $dark-blue;
+  border: none;
+  color: $off-white;
+  border-bottom: 0.3rem solid darken($dark-blue, 10%);
+  margin-right: $xs-size;
+  padding: $s-size;
+}
